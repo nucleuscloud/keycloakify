@@ -42,7 +42,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
       - uses: bahmutov/npm-install@v1
-      - run: npm runbuild
+      - run: npm run build
       - run: npx keycloakify
       - run: mv dist_keycloak/target/retrocompat-*.jar retrocompat-keycloak-theme.jar
       - run: mv dist_keycloak/target/*.jar keycloak-theme.jar
