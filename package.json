@@ -1,11 +1,11 @@
 {
   "name": "neosync",
   "homepage": "https://neosync.dev.dev",
-  "version": "1.0.0",
-  "description": "A starter/demo project for keycloakify",
+  "version": "1.0.1",
+  "description": "Auth templates for Neosync Cloud",
   "repository": {
     "type": "git",
-    "url": "git://github.com/codegouvfr/keycloakify-starter.git"
+    "url": "git://github.com/nucleuscloud/keycloakify.git"
   },
   "type": "module",
   "scripts": {
