@@ -33,8 +33,12 @@ export const WithoutPasswordReset: Story = {
     render: () => <PageStory kcContext={{ realm: { resetPasswordAllowed: false } }} />,
 };
 
-export const WithEmailAsUsername: Story = {
-    render: () => <PageStory kcContext={{ realm: { loginWithEmailAllowed: false } }} />,
+export const WithEmailOrUsername: Story = {
+    render: () => <PageStory kcContext={{ realm: { loginWithEmailAllowed: true } }} />,
+};
+
+export const WithEmailAsUsernameOnly: Story = {
+    render: () => <PageStory kcContext={{ realm: { loginWithEmailAllowed: true, registrationEmailAsUsername: true } }} />,
 };
 
 export const WithPresetUsername: Story = {

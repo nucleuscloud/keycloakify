@@ -1,12 +1,12 @@
-import { clsx } from "keycloakify/tools/clsx";
 import { useRerenderOnStateChange } from "evt/hooks";
-import { Markdown } from "keycloakify/tools/Markdown";
-import type { PageProps } from "keycloakify/login/pages/PageProps";
-import { useGetClassName } from "keycloakify/login/lib/useGetClassName";
-import { evtTermMarkdown } from "keycloakify/login/lib/useDownloadTerms";
-import type { KcContext } from "../kcContext";
-import type { I18n } from "../i18n";
 import { useDownloadTerms } from "keycloakify/login";
+import { evtTermMarkdown } from "keycloakify/login/lib/useDownloadTerms";
+import { useGetClassName } from "keycloakify/login/lib/useGetClassName";
+import type { PageProps } from "keycloakify/login/pages/PageProps";
+import { Markdown } from "keycloakify/tools/Markdown";
+import { clsx } from "keycloakify/tools/clsx";
+import type { I18n } from "../i18n";
+import type { KcContext } from "../kcContext";
 
 export default function Terms(props: PageProps<Extract<KcContext, { pageId: "terms.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -18,7 +18,7 @@ export default function Terms(props: PageProps<Extract<KcContext, { pageId: "ter
 
     const { msg, msgStr } = i18n;
 
-    // NOTE: If you aren't going to customize the layout of the page you can move this hook to 
+    // NOTE: If you aren't going to customize the layout of the page you can move this hook to
     // KcApp.tsx, see: https://docs.keycloakify.dev/terms-and-conditions
     useDownloadTerms({
         kcContext,
@@ -26,7 +26,7 @@ export default function Terms(props: PageProps<Extract<KcContext, { pageId: "ter
 
             const tos_url = (() => {
                 switch (currentLanguageTag) {
-                    case "fr": return `${import.meta.env.BASE_URL}terms/fr.md`;
+                    // case "fr": return `${import.meta.env.BASE_URL}terms/fr.md`;
                     default: return `${import.meta.env.BASE_URL}terms/en.md`;
                 }
             })();
