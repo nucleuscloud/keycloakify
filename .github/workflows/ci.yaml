@@ -11,10 +11,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
       - uses: bahmutov/npm-install@v1
-      - run: yarn build
+      - run: npm run build
       - run: npx keycloakify
 
   check_if_version_upgraded:
@@ -39,10 +39,10 @@ jobs:
     # We create a release only if the version have been upgraded and we are on a default branch
     if: needs.check_if_version_upgraded.outputs.is_upgraded_version == 'true' && github.event_name == 'push'
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
       - uses: bahmutov/npm-install@v1
-      - run: yarn build
+      - run: npm runbuild
       - run: npx keycloakify
       - run: mv dist_keycloak/target/retrocompat-*.jar retrocompat-keycloak-theme.jar
       - run: mv dist_keycloak/target/*.jar keycloak-theme.jar
