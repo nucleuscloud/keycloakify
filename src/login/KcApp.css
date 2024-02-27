@@ -1,6 +1,6 @@
 
 .my-color {
-	color: red;
+	color: white;
 }
 
 .my-font {
@@ -13,5 +13,5 @@
 
 .my-root-class body {
 	/* background: url(./assets/background.svg) no-repeat center center fixed; */
-	background: no-repeat center center fixed;
+	background: rgb(75, 74, 74) no-repeat center center fixed;
 }
