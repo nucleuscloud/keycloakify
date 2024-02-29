@@ -87,7 +87,6 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     width={204}
                     height={40}
                   />
-                  <div id="subWelcomeText">Log in below to get started.</div>
                 </div>
               </div>
             ) : (
@@ -98,7 +97,6 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                   width={204}
                   height={40}
                 />
-                <div id="subWelcomeText">Log in below to get started.</div>
               </div>
             )
           ) : displayRequiredFields ? (

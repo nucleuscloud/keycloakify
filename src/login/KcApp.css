@@ -229,6 +229,10 @@ a:hover {
   margin-top: 25%;
 }
 
+#kc-terms-text {
+  margin-top: 30%;
+}
+
 /* Responsive styles below */
 
 @media (max-width: 1200px) {
