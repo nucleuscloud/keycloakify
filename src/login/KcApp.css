@@ -12,7 +12,7 @@
 
 .my-root-class body {
   /* background: url(./assets/background.svg) no-repeat center center fixed; */
-  background: green no-repeat center center fixed;
+  background: white no-repeat center center fixed;
 }
 
 .sb-show-main.sb-main-padded {
@@ -49,6 +49,8 @@ input.kcInputClass::placeholder {
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
+  flex: 1;
+  /* min-width: 500px; */
 }
 
 .kcLoginClass {
@@ -207,4 +209,69 @@ a {
 a:hover {
   color: #5c5c5c !important;
   text-decoration: underline;
+}
+
+.sideImageContent {
+  display: flex;
+  align-content: center;
+  flex: 1;
+  justify-content: center;
+  background: linear-gradient(to bottom right, #1e1e1e, #2c2b2b);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 10px 10px 10px 10px;
+  align-items: center;
+}
+
+@media (max-width: 1200px) {
+  #kc-content {
+    flex-direction: column;
+  }
+
+  .kcLoginClass {
+    display: flex;
+  }
+
+  .sideImageContent {
+    display: none;
+  }
+
+  .kcContentWrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 770px) {
+  #kc-content {
+    flex-direction: column;
+  }
+
+  .headerLogo {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-top: 40px;
+  }
+
+  #subWelcomeText {
+    display: flex;
+    width: 100%;
+    align-items: start;
+  }
+
+  .kcLoginClass {
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  .sideImageContent {
+    display: none;
+  }
+
+  .kcContentWrapper {
+    width: 100%;
+  }
 }

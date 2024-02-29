@@ -235,14 +235,11 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
         </div>
       </div>
       <div className="sideImageContent">
-        <div className="sideImage">
-          <img
-            src={`${url.resourcesPath}/img/coolstuff.svg`}
-            alt="Neosync logo"
-            width={821}
-            height={802}
-          />
-        </div>
+        <img
+          src={`${url.resourcesPath}/img/sphere.svg`}
+          alt="Neosync logo"
+          style={{ maxWidth: "100%", height: "auto" }}
+        />
       </div>
     </div>
   );
