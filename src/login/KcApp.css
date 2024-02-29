@@ -50,7 +50,6 @@ input.kcInputClass::placeholder {
   flex-direction: column-reverse;
   align-items: center;
   flex: 1;
-  /* min-width: 500px; */
 }
 
 .kcLoginClass {
@@ -223,6 +222,14 @@ a:hover {
   margin: 10px 10px 10px 10px;
   align-items: center;
 }
+
+#kc-reset-password-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25%;
+}
+
+/* Responsive styles below */
 
 @media (max-width: 1200px) {
   #kc-content {
