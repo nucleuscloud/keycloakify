@@ -5,6 +5,6 @@ This is why I made sure to use .my-root-account-class instead of .my-root-class 
 */
 
 .my-root-account-class {
-	/* background: url(./assets/background.svg) no-repeat center center fixed; */
-	background: no-repeat center center fixed;
+  /* background: url(./assets/background.svg) no-repeat center center fixed; */
+  background: no-repeat center center fixed;
 }

@@ -20,6 +20,11 @@ const classes = {
   // NOTE: The classes are defined in ./KcApp.css
   kcHtmlClass: "my-root-class",
   kcHeaderWrapperClass: "my-color my-font",
+  kcInputClass: "kcInputClass",
+  kcContentWrapperClass: "kcContentWrapperClass",
+  kcLoginClass: "kcLoginClass",
+  kcFormCardClass: "kcFormCardClass",
+  kcSignUpClass: "kcSignUpClass",
 } satisfies PageProps["classes"];
 
 export default function KcApp(props: { kcContext: KcContext }) {
