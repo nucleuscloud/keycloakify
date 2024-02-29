@@ -94,13 +94,6 @@ input.kcInputClass::placeholder {
   padding-top: 20%;
 }
 
-#subWelcomeText {
-  font-weight: normal;
-  font-size: 14px;
-  margin-top: 40px;
-  margin-bottom: -80px;
-}
-
 .kcButtonClass {
   border-radius: 8px;
   height: 40px;
@@ -307,6 +300,6 @@ a:hover {
   border-radius: 6px;
 }
 
-#kc-content-wrapper {
+#kc-register-form {
   padding-top: 10%;
 }

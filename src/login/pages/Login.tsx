@@ -54,8 +54,6 @@ export default function Login(
     formElement.submit();
   });
 
-  console.log("social", social);
-
   return (
     <Template
       {...{ kcContext, i18n, doUseDefaultCss, classes }}
@@ -82,6 +80,7 @@ export default function Login(
             social.providers !== undefined &&
             getClassName("kcContentWrapperClass")
         )}
+        style={{ paddingTop: social.providers?.length ? "0" : "10%" }}
       >
         <div
           id="kc-form-wrapper"
@@ -107,10 +106,6 @@ export default function Login(
               onSubmit={onSubmit}
               action={url.loginAction}
               method="post"
-              style={{
-                paddingTop:
-                  !social?.providers && !usernameHidden ? "30%" : "0px",
-              }}
             >
               <div className={getClassName("kcFormGroupClass")}>
                 {!usernameHidden &&
