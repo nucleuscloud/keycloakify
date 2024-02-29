@@ -54,6 +54,8 @@ export default function Login(
     formElement.submit();
   });
 
+  console.log("social", social);
+
   return (
     <Template
       {...{ kcContext, i18n, doUseDefaultCss, classes }}
@@ -91,7 +93,12 @@ export default function Login(
               ]
           )}
         >
-          <div className="separator">
+          <div
+            className="separator"
+            style={{
+              display: !social?.providers ? "none" : "block",
+            }}
+          >
             <span>or continue with email</span>
           </div>
           {realm.password && (
@@ -100,6 +107,10 @@ export default function Login(
               onSubmit={onSubmit}
               action={url.loginAction}
               method="post"
+              style={{
+                paddingTop:
+                  !social?.providers && !usernameHidden ? "30%" : "0px",
+              }}
             >
               <div className={getClassName("kcFormGroupClass")}>
                 {!usernameHidden &&

@@ -50,6 +50,9 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     return null;
   }
 
+  console.log("show", showAnotherWayIfPresent);
+  console.log("auth show", auth?.showTryAnotherWayLink);
+
   return (
     <div className={getClassName("kcLoginClass")}>
       <div
