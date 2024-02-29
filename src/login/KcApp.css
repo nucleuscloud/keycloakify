@@ -306,3 +306,7 @@ a:hover {
 .kc-login-tooltip .kc-tooltip-text {
   border-radius: 6px;
 }
+
+#kc-content-wrapper {
+  padding-top: 10%;
+}
