@@ -79,7 +79,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                 </div>
                 <div className="headerLogo">
                   <img
-                    src={`${url.resourcesPath}/img/logo_and_text_light_mode.svg`}
+                    src="https://assets.nucleuscloud.com/neosync/app/logo_and_text_light_mode.svg"
                     alt="Neosync logo"
                     width={204}
                     height={40}
@@ -89,7 +89,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             ) : (
               <div className="headerLogo">
                 <img
-                  src={`${url.resourcesPath}/img/logo_and_text_light_mode.svg`}
+                  src="https://assets.nucleuscloud.com/neosync/app/logo_and_text_light_mode.svg"
                   alt="Neosync logo"
                   width={204}
                   height={40}
@@ -234,7 +234,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
       </div>
       <div className="sideImageContent">
         <img
-          src={`${url.resourcesPath}/img/sphere.svg`}
+          src="https://assets.nucleuscloud.com/neosync/app/sphere.svg"
           alt="Neosync logo"
           style={{ maxWidth: "100%", height: "auto" }}
         />
