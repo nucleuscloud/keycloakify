@@ -1,17 +1,305 @@
-
 .my-color {
-	color: white;
+  color: white;
 }
 
 .my-font {
-	font-family: 'Work Sans';
+  font-family: "Work Sans";
 }
 
 .my-root-class {
-	background: white;
+  background: white;
 }
 
 .my-root-class body {
-	/* background: url(./assets/background.svg) no-repeat center center fixed; */
-	background: rgb(75, 74, 74) no-repeat center center fixed;
+  /* background: url(./assets/background.svg) no-repeat center center fixed; */
+  background: white no-repeat center center fixed;
+}
+
+.sb-show-main.sb-main-padded {
+  margin: 0;
+  padding: 0rem;
+  display: block;
+  box-sizing: border-box;
+}
+.kcLoginClass {
+  height: 100vh;
+}
+
+.kcInputClass {
+  border-radius: 0.5rem;
+  padding: 0.625rem 1rem;
+  height: 9rem;
+}
+
+.form-control:focus {
+  border-color: #646464;
+  outline: 0;
+  box-shadow: none;
+}
+
+input.kcInputClass::placeholder {
+  font-style: normal;
+}
+
+.kcInputClass:hover {
+  border: 1px solid #646464;
+}
+
+.kcContentWrapperClass {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  flex: 1;
+}
+
+.kcLoginClass {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Equal width */
+  padding: 0;
+}
+
+.kcFormCardClass {
+  width: 100%;
+}
+
+#kc-info {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.login-pf-page .card-pf {
+  margin-bottom: 0px;
+}
+
+.login-pf-page .login-pf-accounts {
+  padding: 0;
+}
+
+.kcLocaleWrapperClass {
+  display: flex;
+  align-items: start;
+  padding: 10px;
+}
+
+#kc-page-title {
+  font-weight: bold;
+  font-size: 36px;
+}
+
+.headerLogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: 20%;
+}
+
+.kcButtonClass {
+  border-radius: 8px;
+  height: 40px;
+  background: #0f172a;
+  border: 0px;
+}
+
+.kcButtonClass:hover {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.kcFormSocialAccountListClass {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#kc-FormSocial-Account-List-Link-Class {
+  margin-bottom: 10px;
+}
+
+#zocial-google {
+  background: #ffffff;
+  border: 1px solid #d7d6d6;
+  border-radius: 8px;
+  padding: 8px 0px 10px 0px;
+  justify-content: center;
+  display: flex;
+}
+#zocial-google:before {
+  content: none;
+}
+
+#zocial-github {
+  background: #ffffff;
+  border: 1px solid #d7d6d6;
+  border-radius: 8px;
+  padding: 8px 0px 10px 0px;
+  justify-content: center;
+  display: flex;
+}
+
+#zocial-github:before {
+  content: none;
+}
+
+#kc-form-wrapper {
+  padding-right: 0px;
+  border-right: 0px solid #d1d1d1;
+  margin-right: 0px;
+}
+
+#kc-social-providers {
+  border-left: 0px;
+  padding-left: 0px;
+}
+
+.separator {
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.separator::before,
+.separator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40%; /* Adjust the width as necessary */
+  height: 1px;
+  background: #d1d1d1;
+  z-index: -1;
+}
+
+.separator::before {
+  left: 0;
+}
+
+.separator::after {
+  right: 0;
+}
+
+.separator span {
+  background: #fff;
+  padding: 0 10px;
+  color: #797979;
+}
+
+.zocial.github:before {
+  content: "\f124";
+}
+
+.login-pf-page .login-pf-signup a {
+  margin-left: 10px;
+}
+
+a {
+  color: #000000;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #5c5c5c !important;
+  text-decoration: underline;
+}
+
+.sideImageContent {
+  display: flex;
+  align-content: center;
+  flex: 1;
+  justify-content: center;
+  background: linear-gradient(to bottom right, #1e1e1e, #2c2b2b);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 10px 10px 10px 10px;
+  align-items: center;
+}
+
+#kc-reset-password-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25%;
+}
+
+#kc-terms-text {
+  margin-top: 30%;
+}
+
+/* Responsive styles below */
+
+@media (max-width: 1200px) {
+  #kc-content {
+    flex-direction: column;
+  }
+
+  .kcLoginClass {
+    display: flex;
+  }
+
+  .sideImageContent {
+    display: none;
+  }
+
+  .kcContentWrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 770px) {
+  #kc-content {
+    flex-direction: column;
+  }
+
+  .headerLogo {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-top: 40px;
+  }
+
+  #subWelcomeText {
+    display: flex;
+    width: 100%;
+    align-items: start;
+  }
+
+  .kcLoginClass {
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  .sideImageContent {
+    display: none;
+  }
+
+  .kcContentWrapper {
+    width: 100%;
+  }
+}
+
+.alert {
+  border-radius: 10px;
+  display: flex;
+}
+
+.kcFeedbackInfoIcon:before {
+  font-size: 16px;
+  display: flex;
+  align-content: center;
+  padding-top: 2px;
+}
+
+.kcResetFlowIcon:before {
+  display: flex;
+  font-size: 16px;
+}
+
+.kc-login-tooltip .kc-tooltip-text {
+  border-radius: 6px;
+}
+
+#kc-register-form {
+  padding-top: 10%;
 }

@@ -3,7 +3,6 @@
 import { usePrepareTemplate } from "keycloakify/lib/usePrepareTemplate";
 import { type TemplateProps } from "keycloakify/login/TemplateProps";
 import { useGetClassName } from "keycloakify/login/lib/useGetClassName";
-import { assert } from "keycloakify/tools/assert";
 import { clsx } from "keycloakify/tools/clsx";
 import { useState } from "react";
 import type { I18n } from "./i18n";
@@ -16,7 +15,6 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     displayRequiredFields = false,
     displayWide = false,
     showAnotherWayIfPresent = true,
-    headerNode,
     showUsernameNode = null,
     infoNode = null,
     kcContext,
@@ -28,10 +26,9 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
   const { getClassName } = useGetClassName({ doUseDefaultCss, classes });
 
-  const { msg, changeLocale, labelBySupportedLanguageTag, currentLanguageTag } =
-    i18n;
+  const { msg } = i18n;
 
-  const { realm, locale, auth, url, message, isAppInitiatedAction } = kcContext;
+  const { auth, url, message, isAppInitiatedAction } = kcContext;
 
   const { isReady } = usePrepareTemplate({
     doFetchDefaultThemeResources: doUseDefaultCss,
@@ -55,33 +52,6 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
   return (
     <div className={getClassName("kcLoginClass")}>
-      <div id="kc-header" className={getClassName("kcHeaderClass")}>
-        <div
-          id="kc-header-wrapper"
-          className={getClassName("kcHeaderWrapperClass")}
-          style={{
-            fontFamily: '"Work Sans"',
-            gap: "5px",
-          }}
-        >
-          {/*
-                        Here we are referencing the `keycloakify-logo.png` in the `public` directory.
-                        When possible don't use this approach, instead ...
-                    */}
-          <img
-            src="https://assets.nucleuscloud.com/neosync/newbrand/logo_text_light_mode.svg"
-            alt="Neosync logo"
-            width={50}
-            style={{ marginRight: "5px" }}
-          />
-          {msg("loginTitleHtml", realm.displayNameHtml)}
-
-          {/* <img src={`${import.meta.env.BASE_URL}keycloakify-logo.png`} alt="Keycloakify logo" width={50} /> */}
-          {/* ...rely on the bundler to import your assets, it's more efficient */}
-          {/* <img src={keycloakifyLogoPngUrl} alt="Keycloakify logo" width={50} /> */}
-        </div>
-      </div>
-
       <div
         className={clsx(
           getClassName("kcFormCardClass"),
@@ -89,31 +59,6 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
         )}
       >
         <header className={getClassName("kcFormHeaderClass")}>
-          {realm.internationalizationEnabled &&
-            (assert(locale !== undefined), true) &&
-            locale.supported.length > 1 && (
-              <div id="kc-locale">
-                <div
-                  id="kc-locale-wrapper"
-                  className={getClassName("kcLocaleWrapperClass")}
-                >
-                  <div className="kc-dropdown" id="kc-locale-dropdown">
-                    <a href="#" id="kc-current-locale-link">
-                      {labelBySupportedLanguageTag[currentLanguageTag]}
-                    </a>
-                    <ul>
-                      {locale.supported.map(({ languageTag }) => (
-                        <li key={languageTag} className="kc-dropdown-item">
-                          <a href="#" onClick={() => changeLocale(languageTag)}>
-                            {labelBySupportedLanguageTag[languageTag]}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            )}
           {!(
             auth !== undefined &&
             auth.showUsername &&
@@ -132,12 +77,24 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     {msg("requiredFields")}
                   </span>
                 </div>
-                <div className="col-md-10">
-                  <h1 id="kc-page-title">{headerNode}</h1>
+                <div className="headerLogo">
+                  <img
+                    src="https://assets.nucleuscloud.com/neosync/app/logo_and_text_light_mode.svg"
+                    alt="Neosync logo"
+                    width={204}
+                    height={40}
+                  />
                 </div>
               </div>
             ) : (
-              <h1 id="kc-page-title">{headerNode}</h1>
+              <div className="headerLogo">
+                <img
+                  src="https://assets.nucleuscloud.com/neosync/app/logo_and_text_light_mode.svg"
+                  alt="Neosync logo"
+                  width={204}
+                  height={40}
+                />
+              </div>
             )
           ) : displayRequiredFields ? (
             <div className={getClassName("kcContentWrapperClass")}>
@@ -192,39 +149,8 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
           )}
         </header>
         <div id="kc-content">
-          <div id="kc-content-wrapper">
+          <div id="kc-content-wrapper" className="kcContentWrapper">
             {/* App-initiated actions should not see warning messages about the need to complete the action during login. */}
-            {displayMessage &&
-              message !== undefined &&
-              (message.type !== "warning" || !isAppInitiatedAction) && (
-                <div className={clsx("alert", `alert-${message.type}`)}>
-                  {message.type === "success" && (
-                    <span
-                      className={getClassName("kcFeedbackSuccessIcon")}
-                    ></span>
-                  )}
-                  {message.type === "warning" && (
-                    <span
-                      className={getClassName("kcFeedbackWarningIcon")}
-                    ></span>
-                  )}
-                  {message.type === "error" && (
-                    <span
-                      className={getClassName("kcFeedbackErrorIcon")}
-                    ></span>
-                  )}
-                  {message.type === "info" && (
-                    <span className={getClassName("kcFeedbackInfoIcon")}></span>
-                  )}
-                  <span
-                    className="kc-feedback-text"
-                    dangerouslySetInnerHTML={{
-                      __html: message.summary,
-                    }}
-                  />
-                </div>
-              )}
-            {children}
             {auth !== undefined &&
               auth.showTryAnotherWayLink &&
               showAnotherWayIfPresent && (
@@ -262,6 +188,37 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                   </div>
                 </form>
               )}
+            {displayMessage &&
+              message !== undefined &&
+              (message.type !== "warning" || !isAppInitiatedAction) && (
+                <div className={clsx("alert", `alert-${message.type}`)}>
+                  {message.type === "success" && (
+                    <span
+                      className={getClassName("kcFeedbackSuccessIcon")}
+                    ></span>
+                  )}
+                  {message.type === "warning" && (
+                    <span
+                      className={getClassName("kcFeedbackWarningIcon")}
+                    ></span>
+                  )}
+                  {message.type === "error" && (
+                    <span
+                      className={getClassName("kcFeedbackErrorIcon")}
+                    ></span>
+                  )}
+                  {message.type === "info" && (
+                    <span className={getClassName("kcFeedbackInfoIcon")}></span>
+                  )}
+                  <span
+                    className="kc-feedback-text"
+                    dangerouslySetInnerHTML={{
+                      __html: message.summary,
+                    }}
+                  />
+                </div>
+              )}
+            {children}
             {displayInfo && (
               <div id="kc-info" className={getClassName("kcSignUpClass")}>
                 <div
@@ -274,6 +231,13 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             )}
           </div>
         </div>
+      </div>
+      <div className="sideImageContent">
+        <img
+          src="https://assets.nucleuscloud.com/neosync/app/sphere.svg"
+          alt="Neosync logo"
+          style={{ maxWidth: "100%", height: "auto" }}
+        />
       </div>
     </div>
   );

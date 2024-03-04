@@ -1,15 +1,12 @@
-// ejected using 'npx eject-keycloak-page'
 import { useGetClassName } from "keycloakify/login/lib/useGetClassName";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import { clsx } from "keycloakify/tools/clsx";
-import { useState } from "react";
 import type { I18n } from "../i18n";
 import type { KcContext } from "../kcContext";
-import { UserProfileFormFields } from "./shared/UserProfileFormFields";
 
-export default function RegisterUserProfile(
+export default function LoginResetPassword(
   props: PageProps<
-    Extract<KcContext, { pageId: "register-user-profile.ftl" }>,
+    Extract<KcContext, { pageId: "login-reset-password.ftl" }>,
     I18n
   >
 ) {
@@ -20,46 +17,53 @@ export default function RegisterUserProfile(
     classes,
   });
 
-  const { url, messagesPerField, recaptchaRequired, recaptchaSiteKey } =
-    kcContext;
+  const { url, realm, auth } = kcContext;
 
   const { msg, msgStr } = i18n;
-
-  const [isFormSubmittable, setIsFormSubmittable] = useState(false);
 
   return (
     <Template
       {...{ kcContext, i18n, doUseDefaultCss, classes }}
-      displayMessage={messagesPerField.exists("global")}
-      displayRequiredFields={true}
-      headerNode={msg("registerTitle")}
+      displayMessage={false}
+      headerNode={msg("emailForgotTitle")}
+      infoNode={msg("emailInstruction")}
     >
       <form
-        id="kc-register-form"
+        id="kc-reset-password-form"
         className={getClassName("kcFormClass")}
-        action={url.registrationAction}
+        action={url.loginAction}
         method="post"
       >
-        <UserProfileFormFields
-          kcContext={kcContext}
-          onIsFormSubmittableValueChange={setIsFormSubmittable}
-          i18n={i18n}
-          getClassName={getClassName}
-        />
-        {recaptchaRequired && (
-          <div className="form-group">
-            <div className={getClassName("kcInputWrapperClass")}>
-              <div
-                className="g-recaptcha"
-                data-size="compact"
-                data-sitekey={recaptchaSiteKey}
-              />
-            </div>
+        <div className={getClassName("kcFormGroupClass")}>
+          <div className={getClassName("kcLabelWrapperClass")}>
+            <label htmlFor="username" className={getClassName("kcLabelClass")}>
+              {!realm.loginWithEmailAllowed
+                ? msg("username")
+                : !realm.registrationEmailAsUsername
+                ? msg("usernameOrEmail")
+                : msg("email")}
+            </label>
           </div>
-        )}
+          <div className={getClassName("kcInputWrapperClass")}>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              className={getClassName("kcInputClass")}
+              autoFocus
+              defaultValue={
+                auth !== undefined && auth.showUsername
+                  ? auth.attemptedUsername
+                  : undefined
+              }
+            />
+          </div>
+        </div>
         <div
-          className={getClassName("kcFormGroupClass")}
-          style={{ marginBottom: 30 }}
+          className={clsx(
+            getClassName("kcFormGroupClass"),
+            getClassName("kcFormSettingClass")
+          )}
         >
           <div
             id="kc-form-options"
@@ -84,8 +88,7 @@ export default function RegisterUserProfile(
                 getClassName("kcButtonLargeClass")
               )}
               type="submit"
-              value={msgStr("doRegister")}
-              disabled={!isFormSubmittable}
+              value={msgStr("doSubmit")}
             />
           </div>
         </div>
