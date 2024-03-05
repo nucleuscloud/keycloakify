@@ -265,14 +265,14 @@ export default function Login(
                     >
                       {p.providerId == "google" ? (
                         <img
-                          src={`${url.resourcesPath}/img/FcGoogle.svg`}
+                          src={`https://assets.nucleuscloud.com/neosync/app/FcGoogle.svg`}
                           alt="Neosync logo"
                           width={24}
                           height={24}
                         />
                       ) : (
                         <img
-                          src={`${url.resourcesPath}/img/FcGithub.svg`}
+                          src={`https://assets.nucleuscloud.com/neosync/app/FcGithub.svg`}
                           alt="Neosync logo"
                           width={24}
                           height={24}
