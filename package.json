@@ -1,7 +1,7 @@
 {
   "name": "neosync",
   "homepage": "https://neosync.dev",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Auth templates for Neosync Cloud",
   "repository": {
     "type": "git",
