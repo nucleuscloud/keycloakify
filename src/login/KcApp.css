@@ -73,6 +73,12 @@ input.kcInputClass::placeholder {
 
 .login-pf-page .login-pf-accounts {
   padding: 0;
+  /* justify-content: flex-start; */
+  /* flex-basis: 50; */
+}
+
+.kcFormHeaderClass.login-pf-header {
+  justify-content: center;
 }
 
 .kcLocaleWrapperClass {
@@ -91,7 +97,7 @@ input.kcInputClass::placeholder {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding-top: 20%;
+  /* padding-top: 20%; */
 }
 
 .kcButtonClass {
@@ -224,6 +230,12 @@ a:hover {
 
 #kc-terms-text {
   margin-top: 30%;
+}
+#kc-content {
+  display: flex;
+}
+.kcContentWrapper {
+  width: 100%;
 }
 
 /* Responsive styles below */
