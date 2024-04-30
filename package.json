@@ -1,7 +1,7 @@
 {
   "name": "neosync",
   "homepage": "https://neosync.dev",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Auth templates for Neosync Cloud",
   "repository": {
     "type": "git",
@@ -21,7 +21,6 @@
   "dependencies": {
     "evt": "^2.5.7",
     "keycloakify": "^9.5.3",
-    "posthog-js": "^1.118.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
