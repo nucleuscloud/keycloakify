@@ -20,7 +20,8 @@
   "keywords": [],
   "dependencies": {
     "evt": "^2.5.7",
-    "keycloakify": "^9.5.3",
+    "keycloakify": "^9.6.7",
+    "posthog-js": "^1.130.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

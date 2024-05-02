@@ -5,6 +5,9 @@ import { useGetClassName } from "keycloakify/account/lib/useGetClassName";
 import { usePrepareTemplate } from "keycloakify/lib/usePrepareTemplate";
 import { assert } from "keycloakify/tools/assert";
 import { clsx } from "keycloakify/tools/clsx";
+import posthog from "posthog-js";
+import { PostHogProvider } from "posthog-js/react";
+import { useEffect } from "react";
 import type { I18n } from "./i18n";
 import type { KcContext } from "./kcContext";
 
@@ -17,6 +20,12 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     i18n;
 
   const { locale, url, features, realm, message, referrer } = kcContext;
+
+  useEffect(() => {
+    posthog.init(kcContext.properties.POSTHOG_KEY ?? "fake-key", {
+      api_host: kcContext.properties.POSTHOG_HOST,
+    });
+  }, [kcContext?.properties?.POSTHOG_KEY, kcContext?.properties?.POSTHOG_HOST]);
 
   const { isReady } = usePrepareTemplate({
     doFetchDefaultThemeResources: doUseDefaultCss,
@@ -35,111 +44,116 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
   return (
     <>
-      <header className="navbar navbar-default navbar-pf navbar-main header">
-        <nav className="navbar" role="navigation">
-          <div className="navbar-header">
-            <div className="container">
-              <h1 className="navbar-title">Keycloak</h1>
+      <PostHogProvider>
+        <header className="navbar navbar-default navbar-pf navbar-main header">
+          <nav className="navbar" role="navigation">
+            <div className="navbar-header">
+              <div className="container">
+                <h1 className="navbar-title">Keycloak</h1>
+              </div>
             </div>
-          </div>
-          <div className="navbar-collapse navbar-collapse-1">
-            <div className="container">
-              <ul className="nav navbar-nav navbar-utility">
-                {realm.internationalizationEnabled &&
-                  (assert(locale !== undefined), true) &&
-                  locale.supported.length > 1 && (
-                    <li>
-                      <div className="kc-dropdown" id="kc-locale-dropdown">
-                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                        <a href="#" id="kc-current-locale-link">
-                          {labelBySupportedLanguageTag[currentLanguageTag]}
-                        </a>
-                        <ul>
-                          {locale.supported.map(({ languageTag }) => (
-                            <li key={languageTag} className="kc-dropdown-item">
-                              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                              <a
-                                href="#"
-                                onClick={() => changeLocale(languageTag)}
+            <div className="navbar-collapse navbar-collapse-1">
+              <div className="container">
+                <ul className="nav navbar-nav navbar-utility">
+                  {realm.internationalizationEnabled &&
+                    (assert(locale !== undefined), true) &&
+                    locale.supported.length > 1 && (
+                      <li>
+                        <div className="kc-dropdown" id="kc-locale-dropdown">
+                          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                          <a href="#" id="kc-current-locale-link">
+                            {labelBySupportedLanguageTag[currentLanguageTag]}
+                          </a>
+                          <ul>
+                            {locale.supported.map(({ languageTag }) => (
+                              <li
+                                key={languageTag}
+                                className="kc-dropdown-item"
                               >
-                                {labelBySupportedLanguageTag[languageTag]}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                                <a
+                                  href="#"
+                                  onClick={() => changeLocale(languageTag)}
+                                >
+                                  {labelBySupportedLanguageTag[languageTag]}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </li>
+                    )}
+                  {referrer?.url && (
+                    <li>
+                      <a href={referrer.url} id="referrer">
+                        {msg("backTo", referrer.name)}
+                      </a>
                     </li>
                   )}
-                {referrer?.url && (
                   <li>
-                    <a href={referrer.url} id="referrer">
-                      {msg("backTo", referrer.name)}
-                    </a>
+                    <a href={url.getLogoutUrl()}>{msg("doSignOut")}</a>
                   </li>
-                )}
-                <li>
-                  <a href={url.getLogoutUrl()}>{msg("doSignOut")}</a>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </header>
+
+        <div className="container">
+          <div className="bs-sidebar col-sm-3">
+            <ul>
+              <li className={clsx(active === "account" && "active")}>
+                <a href={url.accountUrl}>{msg("account")}</a>
+              </li>
+              {features.passwordUpdateSupported && (
+                <li className={clsx(active === "password" && "active")}>
+                  <a href={url.passwordUrl}>{msg("password")}</a>
                 </li>
-              </ul>
-            </div>
+              )}
+              <li className={clsx(active === "totp" && "active")}>
+                <a href={url.totpUrl}>{msg("authenticator")}</a>
+              </li>
+              {features.identityFederation && (
+                <li className={clsx(active === "social" && "active")}>
+                  <a href={url.socialUrl}>{msg("federatedIdentity")}</a>
+                </li>
+              )}
+              <li className={clsx(active === "sessions" && "active")}>
+                <a href={url.sessionsUrl}>{msg("sessions")}</a>
+              </li>
+              <li className={clsx(active === "applications" && "active")}>
+                <a href={url.applicationsUrl}>{msg("applications")}</a>
+              </li>
+              {features.log && (
+                <li className={clsx(active === "log" && "active")}>
+                  <a href={url.logUrl}>{msg("log")}</a>
+                </li>
+              )}
+              {realm.userManagedAccessAllowed && features.authorization && (
+                <li className={clsx(active === "authorization" && "active")}>
+                  <a href={url.resourceUrl}>{msg("myResources")}</a>
+                </li>
+              )}
+            </ul>
           </div>
-        </nav>
-      </header>
 
-      <div className="container">
-        <div className="bs-sidebar col-sm-3">
-          <ul>
-            <li className={clsx(active === "account" && "active")}>
-              <a href={url.accountUrl}>{msg("account")}</a>
-            </li>
-            {features.passwordUpdateSupported && (
-              <li className={clsx(active === "password" && "active")}>
-                <a href={url.passwordUrl}>{msg("password")}</a>
-              </li>
+          <div className="col-sm-9 content-area">
+            {message !== undefined && (
+              <div className={clsx("alert", `alert-${message.type}`)}>
+                {message.type === "success" && (
+                  <span className="pficon pficon-ok"></span>
+                )}
+                {message.type === "error" && (
+                  <span className="pficon pficon-error-circle-o"></span>
+                )}
+                <span className="kc-feedback-text">{message.summary}</span>
+              </div>
             )}
-            <li className={clsx(active === "totp" && "active")}>
-              <a href={url.totpUrl}>{msg("authenticator")}</a>
-            </li>
-            {features.identityFederation && (
-              <li className={clsx(active === "social" && "active")}>
-                <a href={url.socialUrl}>{msg("federatedIdentity")}</a>
-              </li>
-            )}
-            <li className={clsx(active === "sessions" && "active")}>
-              <a href={url.sessionsUrl}>{msg("sessions")}</a>
-            </li>
-            <li className={clsx(active === "applications" && "active")}>
-              <a href={url.applicationsUrl}>{msg("applications")}</a>
-            </li>
-            {features.log && (
-              <li className={clsx(active === "log" && "active")}>
-                <a href={url.logUrl}>{msg("log")}</a>
-              </li>
-            )}
-            {realm.userManagedAccessAllowed && features.authorization && (
-              <li className={clsx(active === "authorization" && "active")}>
-                <a href={url.resourceUrl}>{msg("myResources")}</a>
-              </li>
-            )}
-          </ul>
+
+            {children}
+          </div>
         </div>
-
-        <div className="col-sm-9 content-area">
-          {message !== undefined && (
-            <div className={clsx("alert", `alert-${message.type}`)}>
-              {message.type === "success" && (
-                <span className="pficon pficon-ok"></span>
-              )}
-              {message.type === "error" && (
-                <span className="pficon pficon-error-circle-o"></span>
-              )}
-              <span className="kc-feedback-text">{message.summary}</span>
-            </div>
-          )}
-
-          {children}
-        </div>
-      </div>
+      </PostHogProvider>
     </>
   );
 }
