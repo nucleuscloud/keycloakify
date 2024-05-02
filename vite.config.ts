@@ -55,6 +55,6 @@ export default defineConfig({
    */
   //base: "/keycloakify-starter/"
   build: {
-    sourcemap: true
+    sourcemap: true,
   }
 })
