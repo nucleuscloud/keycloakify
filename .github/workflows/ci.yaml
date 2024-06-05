@@ -46,7 +46,7 @@ jobs:
       - run: npx keycloakify
       - run: mv dist_keycloak/target/retrocompat-*.jar retrocompat-keycloak-theme.jar
       - run: mv dist_keycloak/target/*.jar keycloak-theme.jar
-      - uses: softprops/action-gh-release@v1
+      - uses: softprops/action-gh-release@v2
         with:
           name: Release v${{ needs.check_if_version_upgraded.outputs.to_version }}
           tag_name: v${{ needs.check_if_version_upgraded.outputs.to_version }}
