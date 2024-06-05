@@ -1,5 +1,5 @@
 {
-  "name": "neosync",
+  "name": "@neosync/keycloakify",
   "homepage": "https://neosync.dev",
   "version": "1.0.10",
   "description": "Auth templates for Neosync Cloud",
@@ -15,7 +15,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
-  "author": "u/garronej",
+  "author": "nickzelei",
   "license": "MIT",
   "keywords": [],
   "dependencies": {

@@ -1,11 +1,10 @@
 <p align="center">
-    <i>🚀 A starter/demo project for <a href="https://keycloakify.dev">Keycloakify</a> v9 🚀</i>
+    <i>Neosync Cloud Auth Templates based on Keycloakify v9</i>
     <br/>
     <br/>
-    <img src="https://github.com/codegouvfr/keycloakify-starter/workflows/ci/badge.svg?branch=main">
+    <img src="https://github.com/nucleuscloud/keycloakify/workflows/ci/badge.svg?branch=main">
     <br/>
     <br/>
-    <a href="https://starter.keycloakify.dev">Authenticated React SPA</a>
 </p>
 
 # Introduction
