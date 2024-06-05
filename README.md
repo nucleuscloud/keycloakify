@@ -2,7 +2,7 @@
     <i>Neosync Cloud Auth Templates based on Keycloakify v9</i>
     <br/>
     <br/>
-    <img src="https://github.com/nucleuscloud/keycloakify/workflows/ci/badge.svg?branch=main">
+    <img src="https://github.com/nucleuscloud/keycloakify/actions/workflows/ci.yaml/badge.svg">
     <br/>
     <br/>
 </p>
