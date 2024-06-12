@@ -246,14 +246,16 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
           </div>
         </div>
         <div className="sideImageContent">
-          <div className="loginPageText">
-            Deliver a better developer experience.
-          </div>
-          <div className="loginPageSubText">
-            Anonymization. Synthetic Data. Subsetting. Orchestration.
+          <div>
+            <div className="loginPageText">
+              Deliver a better developer experience.
+            </div>
+            <div className="loginPageSubText">
+              Anonymization. Synthetic Data. Subsetting. Orchestration.
+            </div>
           </div>
           <img
-            src="https://assets.nucleuscloud.com/neosync/app/dark-app.png"
+            src="https://assets.nucleuscloud.com/neosync/app/dark-app.svg"
             alt="Neosync logo"
             style={{
               width: "90%",
