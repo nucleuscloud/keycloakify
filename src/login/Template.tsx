@@ -32,11 +32,13 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
   const { auth, url, message, isAppInitiatedAction } = kcContext;
 
+  const POSTHOG_KEY = "poieowepwer";
+
   useEffect(() => {
-    posthog.init(kcContext.properties.POSTHOG_KEY ?? "fake-key", {
-      api_host: kcContext.properties.POSTHOG_HOST,
+    posthog.init(POSTHOG_KEY ?? "fake-key", {
+      api_host: POSTHOG_KEY,
     });
-  }, [kcContext?.properties?.POSTHOG_KEY, kcContext?.properties?.POSTHOG_HOST]);
+  }, [POSTHOG_KEY, POSTHOG_KEY]);
 
   const { isReady } = usePrepareTemplate({
     doFetchDefaultThemeResources: doUseDefaultCss,
@@ -244,10 +246,26 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
           </div>
         </div>
         <div className="sideImageContent">
+          <div>
+            <div className="loginPageText">
+              Deliver a better developer experience.
+            </div>
+            <div className="loginPageSubText">
+              Anonymization. Synthetic Data. Subsetting. Orchestration.
+            </div>
+          </div>
           <img
-            src="https://assets.nucleuscloud.com/neosync/app/sphere.svg"
+            src="https://assets.nucleuscloud.com/neosync/app/dark-app.svg"
             alt="Neosync logo"
-            style={{ maxWidth: "100%", height: "auto" }}
+            style={{
+              width: "90%",
+              maxWidth: "100%",
+              height: "auto",
+              borderRadius: "10px",
+              borderColor: "#686868",
+              borderWidth: "2px",
+              borderStyle: "solid",
+            }}
           />
         </div>
       </div>
