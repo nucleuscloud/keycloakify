@@ -32,13 +32,11 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
   const { auth, url, message, isAppInitiatedAction } = kcContext;
 
-  const POSTHOG_KEY = "poieowepwer";
-
   useEffect(() => {
-    posthog.init(POSTHOG_KEY ?? "fake-key", {
-      api_host: POSTHOG_KEY,
+    posthog.init(kcContext.properties.POSTHOG_KEY ?? "fake-key", {
+      api_host: kcContext.properties.POSTHOG_HOST,
     });
-  }, [POSTHOG_KEY, POSTHOG_KEY]);
+  }, [kcContext?.properties?.POSTHOG_KEY, kcContext?.properties?.POSTHOG_HOST]);
 
   const { isReady } = usePrepareTemplate({
     doFetchDefaultThemeResources: doUseDefaultCss,
