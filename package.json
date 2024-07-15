@@ -20,7 +20,7 @@
   "keywords": [],
   "dependencies": {
     "evt": "^2.5.7",
-    "keycloakify": "^9.7.0",
+    "keycloakify": "^9.7.2",
     "posthog-js": "^1.139.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
@@ -49,7 +49,7 @@
     "vite-plugin-commonjs": "^0.10.1"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.18.0"
+    "@rollup/rollup-linux-x64-gnu": "4.18.1"
   },
   "_comment": "See https://github.com/storybookjs/storybook/issues/22431#issuecomment-1630086092",
   "resolutions": {
