@@ -49,7 +49,7 @@
     "vite-plugin-commonjs": "^0.10.1"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.18.0"
+    "@rollup/rollup-linux-x64-gnu": "4.21.3"
   },
   "_comment": "See https://github.com/storybookjs/storybook/issues/22431#issuecomment-1630086092",
   "resolutions": {
