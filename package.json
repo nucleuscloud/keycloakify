@@ -26,15 +26,15 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^8.3.1",
-    "@storybook/addon-interactions": "^8.3.1",
-    "@storybook/addon-links": "^8.3.1",
-    "@storybook/addon-onboarding": "^8.3.1",
+    "@storybook/addon-essentials": "^8.3.2",
+    "@storybook/addon-interactions": "^8.3.2",
+    "@storybook/addon-links": "^8.3.2",
+    "@storybook/addon-onboarding": "^8.3.2",
     "@storybook/blocks": "^8.1.5",
-    "@storybook/react": "^8.3.1",
-    "@storybook/react-vite": "^8.3.1",
+    "@storybook/react": "^8.3.2",
+    "@storybook/react-vite": "^8.3.2",
     "@storybook/test": "^8.1.5",
-    "@types/react": "^18.3.7",
+    "@types/react": "^18.3.8",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.16.1",
     "@typescript-eslint/parser": "^7.16.1",
@@ -45,7 +45,7 @@
     "eslint-plugin-storybook": "^0.8.0",
     "storybook": "^8.1.9",
     "typescript": "^5.6.2",
-    "vite": "^5.4.6",
+    "vite": "^5.4.7",
     "vite-plugin-commonjs": "^0.10.3"
   },
   "optionalDependencies": {
