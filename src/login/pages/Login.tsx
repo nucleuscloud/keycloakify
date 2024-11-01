@@ -98,7 +98,7 @@ export default function Login(
               display: !social?.providers ? "none" : "block",
             }}
           >
-            <span>or continue with email!</span>
+            <span>or continue with email</span>
           </div>
           {realm.password && (
             <form
