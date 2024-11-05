@@ -6,9 +6,14 @@ import { useGetClassName } from "keycloakify/login/lib/useGetClassName";
 import { clsx } from "keycloakify/tools/clsx";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
-import { useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import type { I18n } from "./i18n";
 import type { KcContext } from "./kcContext";
+import c2foLogo from "./assets/c2fo_logo.svg";
+import fellow from "./assets/fellow_logo.svg";
+import fp from "./assets/fpllc_logo.svg";
+import siemans from "./assets/siemens_logo.svg";
+import { SyncDash } from "./SyncDash";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
   const {
@@ -57,6 +62,25 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
   if (!isReady) {
     return null;
   }
+
+  const logos: { id: number; logo: ReactElement }[] = [
+    {
+      id: 1,
+      logo: <img src={c2foLogo} width="60" height="200" alt="cust_logo" />,
+    },
+    {
+      id: 2,
+      logo: <img src={fellow} width="120" height="100" alt="cust_logo" />,
+    },
+    {
+      id: 3,
+      logo: <img src={fp} width="160" height="100" alt="cust_logo" />,
+    },
+    {
+      id: 8,
+      logo: <img src={siemans} width="100" height="100" alt="cust_logo" />,
+    },
+  ];
 
   return (
     <PostHogProvider client={posthog}>
@@ -245,26 +269,29 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
         </div>
         <div className="sideImageContent">
           <div>
-            <div className="loginPageText">
-              Deliver a better developer experience.
-            </div>
+            <div className="loginPageText">Every developer needs data.</div>
             <div className="loginPageSubText">
-              Anonymization. Synthetic Data. Subsetting. Orchestration.
+              Neosync powers developers with safe, high-quality data for a
+              better building, testing and debugging experience.
             </div>
           </div>
-          <img
-            src="https://assets.nucleuscloud.com/neosync/app/dark-app.svg"
-            alt="Neosync logo"
+          <SyncDash />
+          <div
             style={{
-              width: "90%",
-              maxWidth: "100%",
-              height: "auto",
-              borderRadius: "10px",
-              borderColor: "#686868",
-              borderWidth: "2px",
-              borderStyle: "solid",
+              display: "flex",
+              flexDirection: "row",
+              width: "100%",
+              justifyContent: "space-evenly",
+              alignItems: "center",
+              padding: "10px",
             }}
-          />
+          >
+            {logos.map((src) => (
+              <div key={src.id} className="flex items-center">
+                {src.logo}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </PostHogProvider>
