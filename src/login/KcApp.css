@@ -227,7 +227,7 @@ a:hover {
   /* margin: 10px 10px 10px 10px; */
   align-items: center;
   gap: 20px;
-  background: linear-gradient(to bottom, #f3f4f6, #d1d5db);
+  background: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
 }
 
 .loginPageText {
