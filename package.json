@@ -1,7 +1,7 @@
 {
   "name": "@neosync/keycloakify",
   "homepage": "https://neosync.dev",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Auth templates for Neosync Cloud",
   "repository": {
     "type": "git",
