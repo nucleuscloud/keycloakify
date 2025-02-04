@@ -1,28 +1,25 @@
-import { StrictMode, Suspense, lazy } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { kcContext as kcAccountThemeContext } from "./account/kcContext";
-import { kcContext as kcLoginThemeContext } from "./login/kcContext";
+import { KcPage } from "./kc.gen";
 
-const KcLoginThemeApp = lazy(() => import("./login/KcApp"));
-const KcAccountThemeApp = lazy(() => import("./account/KcApp"));
+// The following block can be uncommented to test a specific page with `yarn dev`
+// Don't forget to comment back or your bundle size will increase
+
+import { getKcContextMock } from "./login/KcPageStory";
+
+if (import.meta.env.DEV) {
+    window.kcContext = getKcContextMock({
+        pageId: "login.ftl",
+        overrides: {}
+    });
+}
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <Suspense>
-      {(() => {
-        if (kcLoginThemeContext !== undefined) {
-          return <KcLoginThemeApp kcContext={kcLoginThemeContext} />;
-        }
-
-        if (kcAccountThemeContext !== undefined) {
-          return <KcAccountThemeApp kcContext={kcAccountThemeContext} />;
-        }
-
-        throw new Error(
-          "This app is a Keycloak theme" +
-            "It isn't meant to be deployed outside of Keycloak"
-        );
-      })()}
-    </Suspense>
-  </StrictMode>
+    <StrictMode>
+        {!window.kcContext ? (
+            <h1>No Keycloak Context</h1>
+        ) : (
+            <KcPage kcContext={window.kcContext} />
+        )}
+    </StrictMode>
 );
